@@ -7,10 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/board/hello/*")
+@RequestMapping("/api/hello/*")
 public class HelloController {
 
-    @RequestMapping(value ="start.do")
+    @RequestMapping(value ="world.do")
     public void index() {
         log.info("### hello~{}", "Spring Boot board project back end~!");
     }
