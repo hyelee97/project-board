@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'	
+}
+
+group = 'com.mady'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web' // 톰캣
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// 롬복 getter 편하게 사용
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	//Database
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // 쿼리 테스트를 위한 JPA
+	runtimeOnly 'com.h2database:h2' // h2 db
+	//runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+
+
+	// SpringBoot Test
+	// 스프링 부트
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
